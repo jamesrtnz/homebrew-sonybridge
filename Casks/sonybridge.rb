@@ -12,14 +12,14 @@ cask "sonybridge" do
   app "SonyBridge.app"
 
   # App is ad-hoc signed (not notarized); clear quarantine so it launches without a Gatekeeper block.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/SonyBridge.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+      args: ["-dr", "com.apple.quarantine", "{{appdir}}/SonyBridge.app"]
   end
 
   caveats <<~EOS
     Connect your Sony headphones in macOS Bluetooth settings, then open SonyBridge.
     If macOS still blocks it, run:
-      xattr -dr com.apple.quarantine "#{appdir}/SonyBridge.app"
+      xattr -dr com.apple.quarantine "{{appdir}}/SonyBridge.app"
   EOS
 end
