@@ -20,6 +20,6 @@ cask "sonybridge" do
   caveats <<~EOS
     Connect your Sony headphones in macOS Bluetooth settings, then open SonyBridge.
     If macOS still blocks it, run:
-      xattr -dr com.apple.quarantine "{{appdir}}/SonyBridge.app"
+      xattr -dr com.apple.quarantine "#{appdir}/SonyBridge.app"
   EOS
 end
